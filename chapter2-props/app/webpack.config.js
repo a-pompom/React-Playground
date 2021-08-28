@@ -1,3 +1,5 @@
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
 const path = require('path');
 
 const isVanilla = true;
@@ -37,7 +39,9 @@ module.exports = {
 
     /* モジュールを読み込むとき、どう解決するか */
     resolve: {
-        extensions: ['.tsx', '.ts', '.js']
+        extensions: ['.tsx', '.ts', '.js'],
+        /* 参考: https://github.com/TypeStrong/ts-loader#baseurl--paths-module-resolution */
+        plugins: [new TsconfigPathsPlugin({ configFile: './tsconfig.json' })]
     }
 };
 
