@@ -14,6 +14,9 @@ type Props = UsernameField & PasswordField & ButtonState;
  * @param changeUsername ユーザ名変更イベントハンドラ
  * @param password パスワードフィールド
  * @param changePassword パスワード変更イベントハンドラ
+ *
+ * @param button ボタン要素
+ * @param handleClick ボタンクリックイベントハンドラ
  */
 export const SignUpFormView: React.FC<Props> = (
     { username, changeUsername, password, changePassword, button, handleClick}
@@ -27,10 +30,16 @@ export const SignUpFormView: React.FC<Props> = (
             type="text"
             name="username"
             onChange={changeUsername}
-            aria-label="Username"
+            aria-describedby="usernameDescription"
             placeholder="username"
             value={username.value} />
-        <label id="usernameValidationMessage">{message.validation.username} {username.isValid ? '☑︎' : '□'}</label>
+        <span
+            id="usernameDescription"
+            role="status"
+            aria-label={`Username: ${message.validation.password}`}
+        >
+            {message.validation.username} {username.isValid ? '☑︎' : '□'}
+        </span>
 
         {/* パスワード */}
         <label htmlFor="password">Password</label>
@@ -39,20 +48,31 @@ export const SignUpFormView: React.FC<Props> = (
             type="password"
             name="password"
             onChange={changePassword}
-            aria-label="Password"
+            aria-describedby="passwordDescription"
             placeholder="password"
             value={password.value} />
-        <label id="passwordValidationMessage">{message.validation.password} {password.isValid ? '☑︎' : '□'}</label>
+        <span
+            id="passwordDescription"
+            role="status"
+            aria-label={`Password: ${message.validation.password}`}
+        >
+            {message.validation.password} {password.isValid ? '☑︎' : '□'}
+        </span>
 
+        {/* 登録ボタン */}
         <button
             type="button"
-            aria-label="Register"
+            aria-label="登録ボタン"
             disabled={! username.isValid || ! password.isValid}
             onClick={handleClick}
         >
             Register
         </button>
-        <label>
+
+        <label
+            aria-label="ウェルカムメッセージ"
+            aria-disabled={! button.clicked}
+        >
             {button.clicked ? `ようこそ、${username.value}さん。` : ''}
         </label>
     </form>
