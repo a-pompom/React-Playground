@@ -2,7 +2,7 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const path = require('path');
 
-const isVanilla = true;
+const isVanilla = false;
 const entryPath = isVanilla ? './srcVanilla/index.ts' : './src/index.tsx';
 
 module.exports = {

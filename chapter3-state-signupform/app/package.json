@@ -7,7 +7,7 @@
     "serve": "npx webpack-dev-server",
     "build": "npx webpack",
     "testVanilla": "npx jest ./srcVanilla/tests/",
-    "test": "npx jest ./src/tests"
+    "test": "npx jest ./src/tests/"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.2.1",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "jest": "^27.0.6",
